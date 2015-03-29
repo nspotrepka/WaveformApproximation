@@ -1,0 +1,12 @@
+# ignore all bin directories
+# matches "bin" in any subfolder
+bin/
+
+# ignore all target directories
+target/
+
+# Ignore eclipse settings folder
+.settings/
+
+# ignore all files ending with ~
+*~ 
