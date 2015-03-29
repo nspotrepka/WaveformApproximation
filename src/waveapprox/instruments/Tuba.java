@@ -1,12 +1,11 @@
 package waveapprox.instruments;
 
-import waveapprox.sound.BundleManager;
 
 
 public class Tuba extends BufferInstrument {
 
-	public Tuba(String name, BundleManager bManager) {
-		super(name, bManager);
+	public Tuba(String name) {
+		super(name);
 	}
 
 	@Override

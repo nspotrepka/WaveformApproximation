@@ -2,8 +2,10 @@ package waveapprox;
 
 import java.io.IOException;
 
+import waveapprox.instruments.Clarinet;
 import waveapprox.instruments.Instrument;
 import waveapprox.instruments.InstrumentManager;
+import waveapprox.instruments.NoteUtil;
 import waveapprox.instruments.Tuba;
 import waveapprox.sound.AudioRenderer;
 import waveapprox.sound.BundleManager;
@@ -47,17 +49,43 @@ public class Run {
 		}
 		
 		
+		
+		
+		
+		
+		
+		// EXAMPLE
 		// Testing code
+		
 		AudioRenderer renderer = new AudioRenderer(44100, 2);
+		
+		// ADD INSTRUMENTS
+		InstrumentManager iManager = renderer.getInstrumentManager();
+		Instrument inst1 = new Tuba("tuba");
+		Instrument inst2 = new Clarinet("clarinet");
+		iManager.getInstruments().add(inst1);
+		iManager.getInstruments().add(inst2);
+		
+		// FIRST TIME THROUGH
 		BundleManager bManager = renderer.getBundleManager();
-		InstrumentManager iManager = new InstrumentManager();
+		bManager.bufferAllocReadAll(iManager);
+		bManager.synthNew(0, inst1, (float)NoteUtil.midiToFreq(48), 0.7f);
+		bManager.synthNew(0.5, inst1, (float)NoteUtil.midiToFreq(55), 0.3f);
+		bManager.controlSetEnd(3);
 		
-		Instrument inst = new Tuba("tuba", bManager);
-		iManager.add(inst);
+		try {
+			renderer.render();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-		bManager.synthNew(0.1, inst, 0.1f, 0.7f);
-		bManager.synthNew(0.2, inst, 100000, 0.3f);
-		bManager.controlSetEnd(1.4);
+		// NEXT TIME THROUGH
+		bManager.reset();
+		
+		bManager.bufferAllocReadAll(iManager);
+		bManager.synthNew(0, inst2, (float)NoteUtil.midiToFreq(60), 0.7f);
+		bManager.synthNew(0.5, inst2, (float)NoteUtil.midiToFreq(67), 0.3f);
+		bManager.controlSetEnd(3);
 		
 		try {
 			renderer.render();

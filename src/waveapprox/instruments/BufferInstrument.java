@@ -7,7 +7,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import waveapprox.OSUtil;
-import waveapprox.sound.BundleManager;
 import de.sciss.jcollider.SynthDef;
 import de.sciss.jcollider.UGen;
 
@@ -18,12 +17,11 @@ public abstract class BufferInstrument extends Instrument {
 	protected List<File> bufferFiles;
 	protected Comparator<File> fileComparator;
 	
-	public BufferInstrument(String name, BundleManager bManager) {
+	public BufferInstrument(String name) {
 		super(name);
 		bufferFiles = new ArrayList<File>();
 		fileComparator = new BufferFileComparator();
 		listBufferFiles();
-		bManager.bufferAllocRead(this);
 	}
 	
 	public int getBufferFirst(int index) {

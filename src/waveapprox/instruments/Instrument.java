@@ -12,9 +12,9 @@ public abstract class Instrument {
 	protected Control freqControl;
 	protected Control ampControl;
 	
-	protected SynthDef synthDef;
-	protected GraphElem graph;
-	protected File file;
+	protected SynthDef synthDef = null;
+	protected GraphElem graph = null;
+	protected File file = null;
 	
 	public Instrument(String name) {
 		this.name = name;
@@ -39,8 +39,4 @@ public abstract class Instrument {
 	}
 	
 	public abstract void createSynthDef();
-	/*{
-		graph = UGen.ar("Out", UGen.ir(0), UGen.ar("*", ampControl, UGen.ar("SinOsc", UGen.array(freqControl, freqControl))));
-		synthDef = new SynthDef(name, graph);
-	}*/
 }

@@ -1,12 +1,11 @@
 package waveapprox.instruments;
 
-import waveapprox.sound.BundleManager;
 
 
 public class Violin extends BufferInstrument {
 
-	public Violin(String name, BundleManager bManager) {
-		super(name, bManager);
+	public Violin(String name) {
+		super(name);
 	}
 
 	@Override

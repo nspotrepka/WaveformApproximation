@@ -7,6 +7,8 @@ import java.nio.ByteBuffer;
 import java.util.Collections;
 
 import waveapprox.OSUtil;
+import waveapprox.instruments.Instrument;
+import waveapprox.instruments.InstrumentManager;
 import de.sciss.net.OSCBundle;
 
 public class AudioRenderer {
@@ -15,17 +17,16 @@ public class AudioRenderer {
 	
 	private double sampleRate;
 	private int channels;
-	private File oscFile;
-	private File outputFile;
+	private File oscFile = null;
+	private File outputFile = null;
 	private BundleManager bundleManager;
+	private InstrumentManager instrumentManager;
 	
 	public AudioRenderer(double sampleRate, int channels) {
 		this.sampleRate = sampleRate;
 		this.channels = channels;
-		long millis = System.currentTimeMillis();
-		oscFile = new File(OSUtil.getWorkingDirectory() + "/" + millis + ".osc");
-		outputFile = new File(OSUtil.getWorkingDirectory() + "/" + millis + ".wav");
 		bundleManager = new BundleManager();
+		instrumentManager = new InstrumentManager();
 	}
 	
 	public File getOscFile() {
@@ -40,7 +41,21 @@ public class AudioRenderer {
 		return bundleManager;
 	}
 	
+	public InstrumentManager getInstrumentManager() {
+		return instrumentManager;
+	}
+	
 	public void render() throws IOException {
+		long millis = System.currentTimeMillis();
+		oscFile = new File(OSUtil.getWorkingDirectory() + "/" + millis + ".osc");
+		outputFile = new File(OSUtil.getWorkingDirectory() + "/" + millis + ".wav");
+		
+		// Create instrument synth definitions
+		for(Instrument inst : instrumentManager.getInstruments()) {
+			inst.createSynthDef();
+		}
+		instrumentManager.saveAll();
+		
 		// Sort bundles
 		Collections.sort(bundleManager.getBundles(), new BundleManager.OSCBundleComparator());
 		
@@ -101,5 +116,8 @@ public class AudioRenderer {
 		
 		// Delete OSC file
 		oscFile.delete();
+		
+		// Delete synth definitions
+		instrumentManager.deleteAll();
 	}
 }

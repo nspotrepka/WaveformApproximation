@@ -7,6 +7,7 @@ import java.util.List;
 
 import waveapprox.instruments.BufferInstrument;
 import waveapprox.instruments.Instrument;
+import waveapprox.instruments.InstrumentManager;
 import de.sciss.net.OSCBundle;
 import de.sciss.net.OSCMessage;
 
@@ -31,12 +32,24 @@ public class BundleManager {
 	public void incrementBufferCounter() {
 		bufferCounter++;
 	}
+	public void resetBufferCounter() {
+		bufferCounter = 0;
+	}
 	
 	public int getNodeCounter() {
 		return nodeCounter;
 	}
 	public void incrementNodeCounter() {
 		nodeCounter++;
+	}
+	public void resetNodeCounter() {
+		nodeCounter = 1000;
+	}
+	
+	public void reset() {
+		bundles.clear();
+		resetBufferCounter();
+		resetNodeCounter();
 	}
 	
 	public void bufferAllocRead(BufferInstrument inst) {
@@ -48,6 +61,13 @@ public class BundleManager {
 			bufferCounter++;
 		}
 		bundles.add(b);
+	}
+	
+	public void bufferAllocReadAll(InstrumentManager iManager) {
+		for(Instrument inst : iManager.getInstruments()) {
+			if(BufferInstrument.class.isAssignableFrom(inst.getClass()))
+				bufferAllocRead((BufferInstrument)inst);
+		}
 	}
 	
 	public void synthNew(double time, Instrument inst, float freq, float amp) {
