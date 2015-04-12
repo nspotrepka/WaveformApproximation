@@ -2,6 +2,7 @@ package waveapprox;
 
 import java.io.IOException;
 
+import waveapprox.evaluation.FFTEvaluation;
 import waveapprox.instruments.Clarinet;
 import waveapprox.instruments.Instrument;
 import waveapprox.instruments.InstrumentManager;
@@ -12,33 +13,9 @@ import waveapprox.sound.BundleManager;
 import de.sciss.jcollider.UGenInfo;
 
 public class Run {
-	
-	//private static ServerWrapper server;
-	
+
 	public static void main(String[] args) {
-		/*
-		// Quit the SuperCollider server when program quits
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-			@Override
-			public void run() {
-				try {
-					if(server != null)
-						server.quitLoop();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		});
 		
-		// Start the SuperCollider server
-		try {
-			server = new ServerWrapper("JColliderServer");
-		} catch (IOException e) {
-			server = null;
-			e.printStackTrace();
-			System.exit(0);
-		}
-		*/
 		
 		// Read the UGen information
 		try {
@@ -53,7 +30,7 @@ public class Run {
 		
 		
 		
-		
+		/*
 		// EXAMPLE
 		// Testing code
 		
@@ -92,6 +69,13 @@ public class Run {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		*/
+		
+		
+		double e = FFTEvaluation.evaluate("/Users/nspotrepka/Music/Beats/Erroll G - Misty (Haywyre Piano Cover).wav", "/Users/nspotrepka/Music/Beats/01 Afraidtotry (Full Mix).wav");
+		
+		System.out.println(e);
 		
 	}
 }
