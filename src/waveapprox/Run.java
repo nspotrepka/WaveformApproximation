@@ -70,7 +70,16 @@ public class Run {
 			e.printStackTrace();
 		}
 		
+<<<<<<< HEAD
 
+=======
+		
+		
+		
+		//double e = FFTEvaluation.evaluate("/Users/nspotrepka/Music/Beats/01 Afraidtotry Instrumental.wav", "/Users/nspotrepka/Music/01 Afraidtotry Lined Up.wav");
+		
+		//System.out.println(e);
+>>>>>>> 179e46214920baef2692a024fed9abae59413c85
 		
 	}
 }

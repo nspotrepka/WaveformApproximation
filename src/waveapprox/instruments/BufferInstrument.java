@@ -49,7 +49,7 @@ public abstract class BufferInstrument extends Instrument {
 		for(File f : files) {
 			if(f.isFile()) {
 				String fname = f.getName();
-				if((fname.substring(fname.lastIndexOf('.') + 1).toLowerCase()).equals("wav"))
+				if((fname.substring(fname.lastIndexOf('.') + 1).toLowerCase()).equals("wav") && fname.indexOf("-old") == -1)
 					bufferFiles.add(f);
 			}
 		}
