@@ -16,7 +16,7 @@ public class OSUtil {
     		scProgram = "/Applications/SuperCollider/SuperCollider.app/Contents/Resources/scsynth";
     		synthDefDirectory = System.getProperty("user.home")+"/Library/Application Support/SuperCollider/synthdefs/";
     	} else if(isUnix()) {
-    		scProgram = "/usr/local/bin/scsynth";
+    		scProgram = "/usr/bin/scsynth";
     		synthDefDirectory = System.getProperty("user.home")+"/.local/share/SuperCollider/synthdefs/";
     	} else {
     		scProgram = null;
