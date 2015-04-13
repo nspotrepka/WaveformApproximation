@@ -30,7 +30,7 @@ public class Run {
 		
 		
 		
-		/*
+		
 		// EXAMPLE
 		// Testing code
 		
@@ -70,12 +70,12 @@ public class Run {
 			e.printStackTrace();
 		}
 		
-		*/
 		
 		
-		double e = FFTEvaluation.evaluate("/Users/nspotrepka/Music/Beats/Erroll G - Misty (Haywyre Piano Cover).wav", "/Users/nspotrepka/Music/Beats/01 Afraidtotry (Full Mix).wav");
 		
-		System.out.println(e);
+		//double e = FFTEvaluation.evaluate("/Users/nspotrepka/Music/Beats/01 Afraidtotry Instrumental.wav", "/Users/nspotrepka/Music/01 Afraidtotry Lined Up.wav");
+		
+		//System.out.println(e);
 		
 	}
 }
