@@ -47,8 +47,12 @@ public class AudioRenderer {
 	
 	public void render() throws IOException {
 		long millis = System.currentTimeMillis();
-		oscFile = new File(OSUtil.getWorkingDirectory() + "/" + millis + ".osc");
-		outputFile = new File(OSUtil.getWorkingDirectory() + "/" + millis + ".wav");
+		render(Long.toString(millis));
+	}
+	
+	public void render(String fileName) throws IOException {
+		oscFile = new File(OSUtil.getWorkingDirectory() + "/" + fileName + ".osc");
+		outputFile = new File(OSUtil.getWorkingDirectory() + "/" + fileName + ".wav");
 		
 		// Create instrument synth definitions
 		for(Instrument inst : instrumentManager.getInstruments()) {

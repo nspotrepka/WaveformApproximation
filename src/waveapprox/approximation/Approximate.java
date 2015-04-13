@@ -20,7 +20,7 @@ public class Approximate {
 		// BundleManager creates the notes using .synthNew(time, inst, note, vol)
 		
 		final double timestep = 0.1;
-		
+		File currentCandidate;
 		
 		ArrayList<Double> time = new ArrayList<Double>();
 		ArrayList<Integer> note = new ArrayList<Integer>();
@@ -34,6 +34,7 @@ public class Approximate {
 		Instrument inst1 = new Violin("violin");
 		
 		// Try notes
+		
 		// Render file
 		// Evaluate
 		// Pick the best one and add it to the array lists.
