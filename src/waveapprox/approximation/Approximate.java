@@ -3,6 +3,7 @@ package waveapprox.approximation;
 import java.io.File;
 import java.util.ArrayList;
 
+import waveapprox.OSUtil;
 import waveapprox.instruments.Instrument;
 import waveapprox.instruments.InstrumentManager;
 import waveapprox.instruments.NoteUtil;
@@ -18,6 +19,8 @@ public class Approximate {
 		
 		// The renderer has an InstrumentManager and a BundleManager
 		// BundleManager creates the notes using .synthNew(time, inst, note, vol)
+		
+		File target = new File(OSUtil.getWorkingDirectory() + "/target.wav");
 		
 		final double timestep = 0.1;
 		File currentCandidate;
