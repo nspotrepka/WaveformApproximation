@@ -2,7 +2,6 @@ package waveapprox;
 
 import java.io.IOException;
 
-import waveapprox.evaluation.FFTEvaluation;
 import waveapprox.instruments.Clarinet;
 import waveapprox.instruments.Instrument;
 import waveapprox.instruments.InstrumentManager;
@@ -69,17 +68,7 @@ public class Run {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-<<<<<<< HEAD
 
-=======
-		
-		
-		
-		//double e = FFTEvaluation.evaluate("/Users/nspotrepka/Music/Beats/01 Afraidtotry Instrumental.wav", "/Users/nspotrepka/Music/01 Afraidtotry Lined Up.wav");
-		
-		//System.out.println(e);
->>>>>>> 179e46214920baef2692a024fed9abae59413c85
 		
 	}
 }
