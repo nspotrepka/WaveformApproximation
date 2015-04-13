@@ -42,9 +42,8 @@ public class Run {
 		// FIRST TIME THROUGH
 		BundleManager bManager = renderer.getBundleManager();
 		bManager.bufferAllocReadAll(iManager);
-		bManager.synthNew(0, inst1, (float)NoteUtil.midiToFreq(48), 0.7f);
-		bManager.synthNew(0.5, inst1, (float)NoteUtil.midiToFreq(55), 0.3f);
-		bManager.controlSetEnd(3);
+		bManager.synthNew(0, inst1, (float)NoteUtil.midiToFreq(40), 0);
+//		bManager.controlSetEnd(3);
 		
 		try {
 			renderer.render();
