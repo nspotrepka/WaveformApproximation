@@ -8,6 +8,8 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 
+import de.sciss.jcollider.UGenInfo;
+
 import waveapprox.OSUtil;
 import waveapprox.evaluation.WaveFileReader;
 import waveapprox.instruments.BufferInstrument;
@@ -20,15 +22,28 @@ import waveapprox.sound.BundleManager;
 
 public class Approximate {
 	public static void main(String args[]){
-		stupidTest();
+		
+		// Read the UGen information
+		try {
+			UGenInfo.readDefinitions();
+		} catch(IOException e) {
+			System.out.println("error reading ugen info");
+			System.exit(0);
+		}
+		
+		
+		createApproximation();
 	}
 	
 	public static void stupidTest(){
+		
+		
 		AudioRenderer renderer = new AudioRenderer(44100, 2);
 		InstrumentManager iManager = renderer.getInstrumentManager();
 		Instrument inst1 = new Clarinet("clarinet");
 		BundleManager bManager = renderer.getBundleManager();
 		bManager.bufferAllocReadAll(iManager);
+		
 		final float amplitude = 1f;
 
 		bManager.synthNew(0, inst1, (float)NoteUtil.midiToFreq(56), amplitude);
@@ -66,6 +81,7 @@ public class Approximate {
 		// Setup JCollider
 		InstrumentManager iManager = renderer.getInstrumentManager();
 		Instrument inst1 = new Clarinet("clarinet");
+		iManager.getInstruments().add(inst1);
 		BundleManager bManager = renderer.getBundleManager();
 		bManager.bufferAllocReadAll(iManager);
 		

@@ -42,8 +42,8 @@ public class Run {
 		// FIRST TIME THROUGH
 		BundleManager bManager = renderer.getBundleManager();
 		bManager.bufferAllocReadAll(iManager);
-		bManager.synthNew(0, inst1, (float)NoteUtil.midiToFreq(40), 0);
-//		bManager.controlSetEnd(3);
+		bManager.synthNew(0, inst1, (float)NoteUtil.midiToFreq(40), 1f);
+		bManager.controlSetEnd(3);
 		
 		try {
 			renderer.render("wavFiles/candidate.wav");
