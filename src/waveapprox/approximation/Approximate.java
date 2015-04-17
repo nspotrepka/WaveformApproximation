@@ -30,9 +30,13 @@ public class Approximate {
 		BundleManager bManager = renderer.getBundleManager();
 		bManager.bufferAllocReadAll(iManager);
 		final float amplitude = 1f;
-		for (double t = 0; t < 3; t+=0.1){
-			bManager.synthNew(t, inst1, (float)NoteUtil.midiToFreq((int)(56+t)), amplitude);
-		}
+
+		bManager.synthNew(0, inst1, (float)NoteUtil.midiToFreq(56), amplitude);
+		bManager.synthNew(0.2, inst1, (float)NoteUtil.midiToFreq(60), amplitude);
+		bManager.synthNew(1, inst1, (float)NoteUtil.midiToFreq(56), amplitude);
+		bManager.synthNew(1.2, inst1, (float)NoteUtil.midiToFreq(63), amplitude);
+		bManager.synthNew(2, inst1, (float)NoteUtil.midiToFreq(68), amplitude);
+		
 		try{renderer.render("lol");}
 		catch(Exception e){System.out.println("Well shit");}
 
