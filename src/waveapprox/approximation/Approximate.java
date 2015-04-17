@@ -20,8 +20,24 @@ import waveapprox.sound.BundleManager;
 
 public class Approximate {
 	public static void main(String args[]){
-		createApproximation();
+		stupidTest();
 	}
+	
+	public static void stupidTest(){
+		AudioRenderer renderer = new AudioRenderer(44100, 2);
+		InstrumentManager iManager = renderer.getInstrumentManager();
+		Instrument inst1 = new Clarinet("clarinet");
+		BundleManager bManager = renderer.getBundleManager();
+		bManager.bufferAllocReadAll(iManager);
+		final float amplitude = 1f;
+		for (double t = 0; t < 3; t+=0.1){
+			bManager.synthNew(t, inst1, (float)NoteUtil.midiToFreq((int)(56+t)), amplitude);
+		}
+		try{renderer.render("lol");}
+		catch(Exception e){System.out.println("Well shit");}
+
+	}
+	
 	public static int createApproximation(){
 		
 		// The renderer has an InstrumentManager and a BundleManager
