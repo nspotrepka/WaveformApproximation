@@ -46,7 +46,7 @@ public class Run {
 //		bManager.controlSetEnd(3);
 		
 		try {
-			renderer.render();
+			renderer.render("wavFiles/candidate.wav");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

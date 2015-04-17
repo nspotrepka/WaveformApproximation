@@ -52,7 +52,7 @@ public class AudioRenderer {
 	
 	public void render(String fileName) throws IOException {
 		oscFile = new File(OSUtil.getWorkingDirectory() + "/" + fileName + ".osc");
-		outputFile = new File(OSUtil.getWorkingDirectory() + "/" + fileName + ".wav");
+		outputFile = new File(OSUtil.getWorkingDirectory() + "/" + fileName);
 		
 		// Create instrument synth definitions
 		for(Instrument inst : instrumentManager.getInstruments()) {

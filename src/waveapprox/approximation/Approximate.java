@@ -26,9 +26,10 @@ public class Approximate {
 		
 		// The renderer has an InstrumentManager and a BundleManager
 		// BundleManager creates the notes using .synthNew(time, inst, note, vol)
+		// All time is in seconds.
 		
 		
-		final double timestep = 0.05;
+		final double timestep = 0.1;
 		final float amplitude = 0.5f;
 		final double targetDuration = getDurationOfWavInSeconds(OSUtil.getWorkingDirectory() + "/wavFiles/target.wav");
 		System.out.println("targetDuration: "+targetDuration);
@@ -54,17 +55,10 @@ public class Approximate {
 		int lastMidiNote = firstMidiNote + temp.getRange();
 		temp = null;
 		
-		// Code to create empty candidate.wav
-//		try {
-//			bManager.synthNew(0, inst1, (float)NoteUtil.midiToFreq(54), 0);
-//			renderer.render(OSUtil.getWorkingDirectory() + "/wavFiles/candidate.wav");
-//		} catch (IOException e1) {
-//			System.out.println("Couldn't create empty file");
-//			e1.printStackTrace();
-//		}
-		
+
 		// Try notes
 		for(double t = 0; t < targetDuration; t += timestep){
+			System.out.println(t);
 			bManager.reset();
 			
 			// *Load previous notes here
@@ -79,15 +73,13 @@ public class Approximate {
 					OSUtil.getWorkingDirectory() + "/wavFiles/target.wav",
 					OSUtil.getWorkingDirectory() + "/wavFiles/candidate.wav"); 
 			
-			int minDifferenceNote = 0;
+			int minDifferenceNote = firstMidiNote+1;
 			
+			// The loop that tries and evaluates the notes
 			for(int i = firstMidiNote; i < lastMidiNote; i++){
 				bManager.synthNew(t, inst1, (float)NoteUtil.midiToFreq(i), amplitude);
 				try{
-					File file = new File(OSUtil.getWorkingDirectory() + "/wavFiles/candidate.wav");
-					file.delete();
-					System.out.println("File path: "+OSUtil.getWorkingDirectory() + "/wavFiles/candidate.wav");
-					renderer.render(OSUtil.getWorkingDirectory() + "/wavFiles/candidate.wav");
+					renderer.render("wavFiles/candidate.wav");
 				}
 				catch(IOException e){
 					System.out.println("Could not render file. \nt == " +t+ "\ni == "+i);
@@ -119,12 +111,14 @@ public class Approximate {
 		}
 		try {
 			bManager.controlSetEnd(targetDuration);
-			renderer.render(OSUtil.getWorkingDirectory() + "/wavFiles/candidate.wav");
+			renderer.render("wavFiles/candidate.wav");
 		} catch (IOException e) {
 			System.out.println("Could not do the final render");
 			System.exit(1);
 		}
-		
+		for(int i=0; i<note.size(); i++){
+			System.out.println(note.get(i));
+		}
 		return 0;
 	}
 	
